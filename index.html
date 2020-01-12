@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three Line Scene</title>
+    <script src="jquery.js"></script>
+    <script src="dictionary1000.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<style>
+    #names {
+        width:100%;
+        margin-top:20px;
+
+    }
+
+</style>
+<div class="container">
+    <h1>Three Line Scene</h1>
+    <h3><span id="initiator">?</span></h3>
+    <h3>AND</h3>
+    <h3><span id="follower">?</span></h3>
+    <h3>Suggestion: <span id="suggestion">?</span></h3>
+    <form id="tlsForm" action="javascript:alert('TODO')">
+        <button class="btn btm-primary btn-lg" type="submit">DO IT</button>
+        <textarea id="names">Enter names of players</textarea>
+    </form>
+</div>
+<script>
+    $("form").submit(function(e) {
+        var names = $('#names').val().split("\n");
+        var initiatorIndex = Math.floor(Math.random()*names.length);
+        var initiator = names[initiatorIndex];
+
+        var followerChoices = names.splice(initiatorIndex, 1);
+        var follower = names[Math.floor(Math.random()*names.length)];
+
+        var item = DICTIONARY[Math.floor(Math.random()*DICTIONARY.length)];
+
+
+        $("#initiator").text(initiator);
+        $("#follower").text(follower);
+
+        $("#suggestion").text(item);
+
+        e.preventDefault();
+    });
+
+</script>
+</body>
+</html>
